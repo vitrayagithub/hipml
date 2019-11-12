@@ -59,7 +59,7 @@ Insurers write policies in HIPML using HIPML editors. The generated policy docum
 | S.No. | Milestone | Status | Notes |
 |-------|-----------|--------|-------|
 | 1 | HIPML Specification (Draft Proposal) | COMPLETED | v0.1.0 is ready to [view](https://gitlab.com/gopi.vitraya/policy-markup-language/blob/master/Specification.md) |
-| 2 | HIPML Parser in one programming language | COMPLETED | ANTLR parser spec available. This means the parsers could be generated in multiple programming languages including Java, JavaScript, Python, etc.. See [here](https://github.com/antlr/antlr4/blob/master/doc/targets.md)|
+| 2 | HIPML Parser in one programming language | COMPLETED | ANTLR parser spec [available](https://github.com/vitrayagithub/hipml/blob/master/Implementation/ANTLR/HIPML.g4). This means the parsers could be generated in multiple programming languages including Java, JavaScript, Python, etc.. See [here](https://github.com/antlr/antlr4/blob/master/doc/targets.md).|
 | 3 | An application built with HIPML to demonstrate its usage. | IN PROGRESS | A Policy editor with the ability to write policies, take policy variables as input and determine coverage.|
 | 4 | HIPML v0.2.0 with all the sections covered for retail and group policies | TO DO | |
 
