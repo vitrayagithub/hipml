@@ -1,3 +1,4 @@
+```yaml
 Policy Attributes:
   Sum Assured: Amt(10,00,000)
   Copay %: 5
@@ -19,3 +20,4 @@ Exclusions:
   Dgn(Ebola)
   
   Svc(Laundry charges)
+```
