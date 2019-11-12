@@ -19,6 +19,10 @@ Policy Attributes:
   Copay %: 10
 
 Coverage:
+  Prc(CABG):
+    Limit per policy period: Amt(1,00,000)
+  Dgn(Heart diseases), Prc(Cancer Treatments):
+    Limit per person: Amt(5,00,000)
   Prc(Cataract):
     Limit per claim: One of the following:
         - Amt(35,000) if all of the following are true:
