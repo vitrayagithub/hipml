@@ -108,9 +108,9 @@ Now, let us define these entities with their properties and then we go through e
 | Category | String | Policy category. “Retail” or “Group”. To be expanded | Y |
 | URL | String | URL to the policy document online | N |
 | Version | String | Version of the policy. E.g., 1.3.0, v4, 10, etc.. | Y |
-| ApprovalDate | Date | Date on which the policy is approved | N |
-| EffectiveDate | Date | Date on which the policy can be effective post policy approval | N |
-| ExpirationDate | Date | Date on which the policy will expire. Meaning any new policiy with a start date later than the expiration date is invalid | N |
+| Approval Date | Date | Date on which the policy is approved | N |
+| Effective Date | Date | Date on which the policy can be effective post policy approval | N |
+| Expiration Date | Date | Date on which the policy will expire. Meaning any new policiy with a start date later than the expiration date is invalid | N |
 | Sum Assured | Amount | Sum Assured | N |
 | Copay % | Number | Copay percentage | N |
 
