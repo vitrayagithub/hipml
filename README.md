@@ -58,11 +58,12 @@ Insurers write policies in HIPML using HIPML editors. The generated policy docum
 
 | S.No. | Milestone | Status | Notes |
 |-------|-----------|--------|-------|
-| 1 | HIPML Specification (Draft Proposal) | IN PROGRESS | We are wroking on the first draft of the Specification. The assumptions and design choices would be validated after the parser is built. Then the first version of HIPML would be released. |
+| 1 | HIPML Specification (Draft Proposal) | IN PROGRESS | v0.0.1 is complete |
 | 2 | HIPML Parser in one programming language | IN PROGRESS | |
 | 3 | HIPML v0.1.0 along with parser libraries in two programming languages, documentation, tutorial and examples | TO DO |
 | 4 | Parser libraries for other popular programming languages | TO DO |
 
 ### License notice:
 - All the code in the repository is shared under the [MIT License](https://opensource.org/licenses/MIT).
-- The rest of the information in the repository including Specification is shared under Creative Commons license [Attribution-NonCommercial 4.0 International (CC BY-NC 4.0)](https://creativecommons.org/licenses/by-nc/4.0/)
+
+&copy; - 2019, Vitraya Technologies
