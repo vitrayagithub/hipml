@@ -1,6 +1,6 @@
 ## HIPML Specification:
 
-[![Generic badge](https://img.shields.io/badge/Versoin-0.0.1-blue.svg)](https://shields.io/)
+[![Generic badge](https://img.shields.io/badge/Version-0.0.1-blue.svg)](https://shields.io/)
 
 _This document is intended for HIPML implementers._
 
