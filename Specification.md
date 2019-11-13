@@ -33,7 +33,7 @@ _Additional types will be added after the first implementation of the spec_
 - `>` or `is greater than` (Boolean operator on numbers and currency amount; `1 > 2` -> false; `Amt(1,000) is greater than Amt(500)` -> true)
 - `<=` or `is less than or equal to` (Boolean operator on numbers and currency amount; `1 <= 1` -> true; `Amt(1,000) is less than or equal to Amt(500)` -> false)
 - `>=` or `is greater than or equal to` (Boolean operator on numbers and currency amount; `1 >= 2` -> false; `Amt(1,000) is greater than or equal to Amt(1000)` -> true)
-- `and` (Boolean operator; Logical and; `1 == 1` and `Var(Policy type) is equal to "ABC Platinum policy"`; `1 < 2 and Var(Claim Amount) >= Amt(500)`)
+- `and` (Boolean operator; Logical and; `1 == 1 and Var(Policy type) is equal to "ABC Platinum policy"`; `1 < 2 and Var(Claim Amount) >= Amt(500)`)
 - `or` (Boolean operator; Logical or; `1 == 1 or "Var(Policy type) is "A"`; `1 < 2 and Var(Claim Amount) >= Amt(500)`)
 - `contains` (Boolean operator on an Array of elements; `["A", "B", "C"] contains "A"` -> true)
 - `does not contain` (Boolean operator on an Array of elements; `["A", "B", "C"] does not contain "A"` -> false)
@@ -105,7 +105,7 @@ Now, let us define these entities with their properties and then we go through e
 | ------------- | ------------- | ------------- | -------------- |
 | Name  | String | Name of the policy or product | Y |
 | Issuer | String | Name of the insurer issuing the policy | Y |
-| UIN | String | [Unique ID of the policy](https://www.irdai.gov.in/ADMINCMS/cms/NormalData_Layout.aspx?page=PageNo3832&mid=27.3.6) | ? |
+| UIN | String | [Unique ID of the policy](https://www.irdai.gov.in/ADMINCMS/cms/NormalData_Layout.aspx?page=PageNo3832&mid=27.3.6) | N |
 | Type | String | Policy type. For now only “Medical”. To be expanded | Y |
 | Category | String | Policy category. “Retail” or “Group”. To be expanded | Y |
 | URL | String | URL to the policy document online | N |
@@ -134,7 +134,7 @@ Dgn(Heart surgeries)
 ```
 ### Procedures:
 
-Procedures are represented in ICD-10 PCS [standard](https://www.cms.gov/Medicare/Coding/ICD10/2019-ICD-10-PCS.html). Common groups/categories of procedures, that are not present in the standard, will be part of HIPML spec. The format to specify a procedure or a grouping is `Prc)Unique Name of the Procedure or Procedure Grouping"`
+Procedures are represented in [ICD-10 PCS standard](https://www.cms.gov/Medicare/Coding/ICD10/2019-ICD-10-PCS.html). Common groups/categories of procedures, that are not present in the standard, will be part of HIPML spec. The format to specify a procedure or a grouping is `Prc(Unique Name of the Procedure or Procedure Grouping)`
 
 Examples:
 
@@ -147,7 +147,7 @@ Prc(Bone Marrow Cancer treatments)
 
 ### Services:
 
-Services that are not part of ICD-10 PCS procedures will be defined as part of the spec. They are formatted as SRVC."Unique service name".
+Services that are not part of ICD-10 PCS procedures will be defined as part of the spec. They are formatted as `Svc(Unique service name)`.
 
 Examples:
 
@@ -163,7 +163,7 @@ Let us go through various sections of the policy and see how to represent them i
 ## Policy sections:
 
 ### Policy Atrributes
-This section has the details of the policy that together identify the policy uniquely. This section may also contain custom attributes that are used in eligibility or coverage determination.
+This section has the details of the policy as described in the Policy entity above, that together identify the policy uniquely. This section may also contain custom attributes that are used in eligibility or coverage determination.
 
 ```yaml
 Policy Attributes:
@@ -173,7 +173,7 @@ Policy Attributes:
 ```
 
 ### Coverage
-This section describes the benefit coverage of various procedures, diagnoses and services. Each coverage entry starts with the name of a Procedure, Diagnosis and Service that is covered, optionally followed by details of the coverage including:
+This section describes the benefit coverage of various procedures, diagnoses and services. Each coverage entry starts with the name of a Procedure, Diagnosis and Service that is covered, optionally followed by limits of the coverage including:
 * `Limit per policy period`
 * `Limit per policy year`
 * `Limit per claim`
@@ -181,11 +181,14 @@ This section describes the benefit coverage of various procedures, diagnoses and
 * `Limit per day`
 * `Limit per person`
 
-A condition could be introduced for coverage item using the phrase `Included only if:` followed by a boolean expression.
+The limits are followed by a number, amount or a numeric expression. See example below. A condition could be introduced for coverage item using the phrase `Included only if:` followed by a boolean expression.
+
 Usage:
 
 ```yaml
 Coverage:
+  Prc(Endoscopy)
+  Svc(Room charges)
   Prc(Angioplasty):
     Limt per claim: 1 % of Var(Sum Assured)
     Limt per policy period: Amt(1,00,000)
@@ -206,24 +209,10 @@ Exclusions:
       Var(Claim Diagnoses) contains Dgn(Dental Cancer)
 ```
 
-### Definitions
-
-This section usually describes the medical terms used in the policy for procedures and diagnosis. Common definitions that are relevant for defining coverage rules would be identified and be made part of the specification either in diagnosis, procedures or services.
-
-In addition to that, The Definitions sections could be included as is and will not be interpreted by HIPML parsers.
-
-```yaml
-Definitions: {{
-1. Any one illness: Any one illness means continuous period of illness and includes relapse within 45 days from the date of last consultation with the Hospital/Nursing Home where treatment was taken.
-2. ABC Network Hospitals / Network Hospitals: ABC Network Hospitals / Network Hospitals means the Hospitals which have been empanelled by Us as per the latest version of the schedule of Hospitals maintained by Us, which is available to You on request.For updated list please visit our website.
-3. ABC Diagnostic Centre: ABC Diagnostic Centre means the diagnostic centers which have been empanelled by us as per the latest version of the schedule of diagnostic centers maintained by Us, which is available to You on request.
-...
-}}
-```
-
 ### Conditions
 
-This section describes any conditions for patient eligibility to submit a claim and general rules for claim submission. Not all the claim submission rules and procedures can be represented in HIPML. This is still being discussed.
+This section describes any conditions for patient eligibility to submit a claim and general rules for claim submission. The syntax is `Patient Eligibility:` or `Claim Admissibility:` followed by a boolean expression. See example below.
+Not all the claim submission rules and procedures can be represented in HIPML. This section would be updated accordingly in the next version of the spec.
 
 ```yaml
 Conditions:
@@ -240,9 +229,22 @@ Conditions:
       and Var(Country of treatment) is "India"
 ```
 
+### Definitions
+
+This section usually describes the medical terms used in the policy for procedures and diagnosis. Common definitions that are relevant for defining coverage rules would have to be identified and be made part of the specification either in diagnosis, procedures or services. The Definitions sections would be included as is and will not be interpreted by HIPML parsers. All the text of the Definitions sections would be enclosed between `{{` and `}}`. This means, you should avoid using those inside the Definitions' text.
+
+```yaml
+Definitions: {{
+1. Any one illness: Any one illness means continuous period of illness and includes relapse within 45 days from the date of last consultation with the Hospital/Nursing Home where treatment was taken.
+2. ABC Network Hospitals / Network Hospitals: ABC Network Hospitals / Network Hospitals means the Hospitals which have been empanelled by Us as per the latest version of the schedule of Hospitals maintained by Us, which is available to You on request.For updated list please visit our website.
+3. ABC Diagnostic Centre: ABC Diagnostic Centre means the diagnostic centers which have been empanelled by us as per the latest version of the schedule of diagnostic centers maintained by Us, which is available to You on request.
+...
+}}
+```
+
 ### Contact
 
-Not very useful for claims management system, but may be represented as plain text, similar to "Discussions" section.
+Contac details usually found in policy documents. This may be represented as plain text, similar to "Discussions" section.
 
 ```yaml
 Contact {{
