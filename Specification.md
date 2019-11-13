@@ -218,10 +218,10 @@ Not all the claim submission rules and procedures can be represented in HIPML. T
 Conditions:
   Patient Eligibility:
       Number of days between Var(Policy Expiration Date) and Var(Hospitalization Start Date) > 0
-      and any one of the follwing is true
+      and (any one of the follwing is true
         - Var(Patient relationship with subscriber) is "Child" and Var(Patient Age) is less than 25
-        - (Var(Patient relationship with subscriber) is "Self" and Var(Patient Age) is less than 65 years)
-        - Var(Plan type) is "ABC Platinum Plan"
+        - Var(Patient relationship with subscriber) is "Self" and Var(Patient Age) is less than 65 years
+        - Var(Plan type) is "ABC Platinum Plan")
       and Var(Patient Nationality) is "Indian"
   Claim Admissibility:
       Number of days between Var(Policy Start Date) and Var(Claim Submission Date) >= 0
