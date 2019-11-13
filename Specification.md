@@ -77,9 +77,9 @@ At least one of the following is true:
 Usage:
 ```yaml
 One of the following:
-  - Amt(10,000) if the Var(Employee Designation) is "Intern"
-  - Amt(20,000) if the Var(Employee Designation) is "Associate"
-  - Amt(30,000) if the Var(Employee Designation) is "Manager"
+  - Amt(10,000) if Var(Employee Designation) is "Intern"
+  - Amt(20,000) if Var(Employee Designation) is "Associate"
+  - Amt(30,000) if Var(Employee Designation) is "Manager"
   - Amt(5,000) default
 ```
 
