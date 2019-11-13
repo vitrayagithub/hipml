@@ -2,8 +2,6 @@
 
 [![Generic badge](https://img.shields.io/badge/Version-0.1.0-blue.svg)](https://shields.io/)
 
-_This document is intended for HIPML implementers._
-
 A health insurance policy consists of different sections with rules and conditions describing the coverage provided and not provided. HIPML’s objective is to help codify these sections and rules in a standard format. The rules are written on top of what we call entities. Examples of these entities include Diagnosis, Procedures, Hospitalization, Subscriber, Policy itself, etc..
 
 HIPML syntax and notations:
