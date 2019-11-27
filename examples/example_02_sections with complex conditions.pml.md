@@ -10,7 +10,7 @@ Policy Attributes:
   Approval Date: 2019-01-01
   Effective Date: 2019-02-01
   Expiration Date: 2024-12-31
-  Sum Assured: One of the following:
+  Sum Insured: One of the following:
     - Amt(1,00,000) if Var(Employee Designation) is "Staff"
         and Var(Enhancement Type) is "50%"
     - Amt(2,00,000) if Var(Employee Designation) is "Associate"
@@ -31,7 +31,7 @@ Coverage:
         - Amt(40,000) if Var(Employee Designation) is "Asociate"
             and Var(Enhancement Type) is "100%"
         - Amt(50,000) if Var(Employee Designation) is "Director"
-        - 5 % of Var(Sum Assured) default
+        - 5 % of Var(Sum Insured) default
     Included only if:
       number of months between Var(Policy start date) and Var(Hospitalization date) is greater than 36
       and Var(Pre-existing conditions) does not contain Dgn(Diabetes)
