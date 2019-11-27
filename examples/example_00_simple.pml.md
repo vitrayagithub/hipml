@@ -1,6 +1,6 @@
 ```yaml
 Policy Attributes:
-  Sum Assured: Amt(10,00,000)
+  Sum Insured: Amt(10,00,000)
   Copay %: 5
 
 Coverage:
