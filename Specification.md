@@ -16,7 +16,7 @@ _Additional types will be added after the first implementation of the spec_
 
 ### Special values
 
-- *Variables* (Input variables. `Var(Variable name)`; `Var(Sum Assured)`, `Var(Patient Age)`)
+- *Variables* (Input variables. `Var(Variable name)`; `Var(Sum Insured)`, `Var(Patient Age)`)
 - *Currency amount* (`Amt(amount)`; `Amt(1,000)`, `Amt(5,00,000)`, `Amt(123.45)`)
 - *Diagnosis* (`Dgn(Diabetes)`; This would be a predefined set of values. Mostly ICD-10 and some custom groupings. Details TBD)
 - *Procedures* (`Prc(CABG)`; Same as above; ICD-10 PCS and some custom groupings)
@@ -60,7 +60,7 @@ _Additional types will be added after the first implementation of the spec_
 Usage:
 ```yaml
 All of the following are true:
-  - Var(Sum Assured) is greater than Amt(2,00,000)
+  - Var(Sum Insured) is greater than Amt(2,00,000)
   - Var(Patient Age) is less than 2
   - number of days between Var(Hospitalization Start Date) and Var(Claim Submission Date) is less than or equal to 14
 ```
@@ -69,7 +69,7 @@ All of the following are true:
 Usage:
 ```yaml
 At least one of the following is true:
-  - Var(Sum Assured) is greater than Amt(3,00,000)
+  - Var(Sum Insured) is greater than Amt(3,00,000)
   - Var(Employee Designation) is "Director"
 ```
 - `At least one of the following is false` or `Any one of the following is false` (Compound boolean expression; Usage similar to the above)
@@ -111,7 +111,7 @@ Now, let us define these entities with their properties and then we go through e
 | Approval Date | Date | Date on which the policy is approved | N |
 | Effective Date | Date | Date on which the policy can be effective post policy approval | N |
 | Expiration Date | Date | Date on which the policy will expire. Meaning any new policiy with a start date later than the expiration date is invalid | N |
-| Sum Assured | Amount | Sum Assured | N |
+| Sum Insured | Amount | Sum Insured | N |
 | Copay % | Number | Copay percentage | N |
 
 Custom attributes could also be introduced by the policy writer for later usage in the policy document.
@@ -188,8 +188,8 @@ Coverage:
   Prc(Endoscopy)
   Svc(Room charges)
   Prc(Angioplasty):
-    Limt per claim: 1 % of Var(Sum Assured)
-    Limt per policy period: Amt(1,00,000)
+    Limit per claim: 1 % of Var(Sum Insured)
+    Limit per policy period: Amt(1,00,000)
     Included only if: 
       Number of months between Var(Policy start date) and Var(Hospitalization start date) is greater than 12
       and Var(Pre-existing conditions) does not contain Dgn(Heart arrhythmia)
