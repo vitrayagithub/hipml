@@ -113,8 +113,13 @@ Now, let us define these entities with their properties and then we go through e
 | Expiration Date | Date | Date on which the policy will expire. Meaning any new policiy with a start date later than the expiration date is invalid | N |
 | Sum Insured | Amount | Sum Insured | N |
 | Copay % | Number | Copay percentage | N |
-| Pre-hospitalization period | Number | Period to be considered for Pre-hospitalization claims. Units - days.| N |
-| Post-hospitalization period | Number | Period to be considered for Post-hospitalization claims. Units - days.| N |
+| Pre-hospitalization period | Number | Period to be considered for Pre-hospitalization claims. Units - days| N |
+| Post-hospitalization period | Number | Period to be considered for Post-hospitalization claims. Units - days| N |
+| Default limit per policy period | Number | Default limit to all procedures | N |
+| Default limit per policy year | Number | Default limit to all procedures | N |
+| Default limit per claim | Number | Default limit to all procedures | N |
+| Default limit per person | Number | Default limit to all procedures | N |
+| Default limit per family | Number | Default limit to all procedures | N |
 
 Custom attributes could also be introduced by the policy writer for later usage in the policy document.
 
